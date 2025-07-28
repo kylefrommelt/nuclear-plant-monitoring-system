@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuclear Plant Monitoring System - Westinghouse Electric Co.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">⚛️</div>
+                    <div class="header-text">
+                        <h1>Nuclear Plant Monitor</h1>
+                        <p>Westinghouse Electric Co. - Real-time Monitoring System</p>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-light" id="systemStatus"></div>
+                    <span id="statusText">SYSTEM ONLINE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Critical Alerts Panel -->
+            <section class="alert-panel" id="alertPanel">
+                <h2>🚨 System Alerts</h2>
+                <div class="alert-list" id="alertList">
+                    <div class="alert-item info">
+                        <span class="alert-time">14:30:25</span>
+                        <span class="alert-message">System initialization complete</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-time Sensor Data -->
+            <section class="sensor-grid">
+                <!-- Temperature Section -->
+                <div class="sensor-card">
+                    <div class="sensor-header">
+                        <h3>🌡️ Reactor Temperature</h3>
+                        <span class="sensor-status normal" id="tempStatus">NORMAL</span>
+                    </div>
+                    <div class="sensor-value">
+                        <span class="value" id="temperature">325.4</span>
+                        <span class="unit">°C</span>
+                    </div>
+                    <div class="sensor-limits">
+                        <span>Safe Limit: 350.0°C</span>
+                    </div>
+                    <div class="sensor-chart">
+                        <canvas id="temperatureChart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+
+                <!-- Pressure Section -->
+                <div class="sensor-card">
+                    <div class="sensor-header">
+                        <h3>⚡ System Pressure</h3>
+                        <span class="sensor-status normal" id="pressureStatus">NORMAL</span>
+                    </div>
+                    <div class="sensor-value">
+                        <span class="value" id="pressure">1875.3</span>
+                        <span class="unit">PSI</span>
+                    </div>
+                    <div class="sensor-limits">
+                        <span>Safe Limit: 2200.0 PSI</span>
+                    </div>
+                    <div class="sensor-chart">
+                        <canvas id="pressureChart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+
+                <!-- Radiation Section -->
+                <div class="sensor-card">
+                    <div class="sensor-header">
+                        <h3>☢️ Radiation Level</h3>
+                        <span class="sensor-status normal" id="radiationStatus">NORMAL</span>
+                    </div>
+                    <div class="sensor-value">
+                        <span class="value" id="radiation">0.25</span>
+                        <span class="unit">mSv/h</span>
+                    </div>
+                    <div class="sensor-limits">
+                        <span>Safe Limit: 1.0 mSv/h</span>
+                    </div>
+                    <div class="sensor-chart">
+                        <canvas id="radiationChart" width="300" height="150"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Information -->
+            <section class="info-panel">
+                <div class="info-card">
+                    <h3>📡 Network Status</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span>Connected Clients:</span>
+                            <span id="clientCount">3</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Data Transmission:</span>
+                            <span class="status-active">ACTIVE</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Last Update:</span>
+                            <span id="lastUpdate">14:30:25</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>🔒 Security Status</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span>Encryption:</span>
+                            <span class="status-active">ENABLED</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Authentication:</span>
+                            <span class="status-active">VERIFIED</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Blocked Attempts:</span>
+                            <span id="blockedAttempts">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>🏭 Plant Information</h3>
+                    <div class="info-content">
+                        <div class="info-row">
+                            <span>Plant ID:</span>
+                            <span>WESTINGHOUSE_REACTOR_001</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Location:</span>
+                            <span>Warrendale, PA</span>
+                        </div>
+                        <div class="info-row">
+                            <span>Monitoring Since:</span>
+                            <span id="monitoringSince">2023-12-07 09:00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <h3>🎛️ System Controls</h3>
+                <div class="control-buttons">
+                    <button class="btn btn-primary" onclick="startMonitoring()">Start Monitoring</button>
+                    <button class="btn btn-secondary" onclick="pauseMonitoring()">Pause</button>
+                    <button class="btn btn-danger" onclick="emergencyShutdown()">Emergency Stop</button>
+                    <button class="btn btn-info" onclick="generateReport()">Generate Report</button>
+                </div>
+                <div class="control-settings">
+                    <label for="scanInterval">Scan Interval (ms):</label>
+                    <input type="number" id="scanInterval" value="1000" min="100" max="10000" onchange="updateScanInterval()">
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2023 Westinghouse Electric Company. Nuclear Plant Monitoring System v1.0</p>
+            <p>Designed for commercial nuclear sector operations with industrial-grade reliability</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html> 
