@@ -1,7 +1,6 @@
 # Nuclear Plant Monitoring System
 
 **A Production-Grade Nuclear Plant Monitoring System**  
-*Westinghouse Electric Co. - Commercial Nuclear Division*
 
 ## 🎯 Project Overview
 
@@ -317,12 +316,3 @@ This project showcases expertise in:
 - ✅ **Industrial Control**: SCADA and monitoring systems
 - ✅ **Cybersecurity**: Industrial security best practices
 - ✅ **Regulatory Awareness**: Safety and compliance considerations
-
-## 📞 Contact
-
-This project demonstrates production-ready software engineering skills suitable for the Westinghouse Electric Co. Software Engineer position. The codebase showcases modern C++ development, industrial protocol expertise, and security-conscious programming practices required for commercial nuclear applications.
-
----
-
-**Built for Westinghouse Electric Co. - Commercial Nuclear Division**  
-*Demonstrating industrial-grade software engineering for nuclear plant monitoring systems* 
